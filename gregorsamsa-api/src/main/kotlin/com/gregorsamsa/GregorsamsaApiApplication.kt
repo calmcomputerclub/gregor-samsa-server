@@ -1,4 +1,4 @@
-package com.gregorsamsa.api
+package com.gregorsamsa
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

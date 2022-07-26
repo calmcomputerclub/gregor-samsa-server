@@ -1,0 +1,9 @@
+spring.application.name: gregorsamsa-api
+spring.profiles.active: local
+
+spring:
+  config:
+    import:
+      - core-db.yml
+---
+spring.config.activate.on-profile: local
