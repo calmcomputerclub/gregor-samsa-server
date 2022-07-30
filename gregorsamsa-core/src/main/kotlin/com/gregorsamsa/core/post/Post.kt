@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
 @Entity
-internal class Post(
+class Post(
     @field:Column(nullable = false, columnDefinition = "varchar(255)")
     var title: String,
 
