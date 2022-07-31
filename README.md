@@ -1,5 +1,12 @@
 # gregor-samsa-server
 
+### stack
+- Springboot2.7
+- Kotlin1.6
+- H2/MySql8
+- Spring Data JPA
+- JUnit5, Mockk
+
 
 # issue
 
