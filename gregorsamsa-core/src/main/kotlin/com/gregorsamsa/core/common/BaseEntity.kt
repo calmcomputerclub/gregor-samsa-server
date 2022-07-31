@@ -12,7 +12,7 @@ import javax.persistence.MappedSuperclass
 abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    val id: Long? = null
 
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()

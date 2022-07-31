@@ -1,8 +1,11 @@
 package com.gregorsamsa.core.post
 
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
+import io.mockk.spyk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -27,14 +30,14 @@ internal class PostCommandTest {
     @Test
     fun `post 등록하고 id 반환한다`() {
         //given
-        val post = Post(
-            title = "title",
-            content = "content",
-            status = PostStatus.NOT_STARTED,
-            dueDateTime = LocalDateTime.now(),
-            author = null,
-        ).also { it.id = 1 }
+        val post = spyk<Post>().also {
+            it.title = "title"
+            it.content = "content"
+            it.status = PostStatus.NOT_STARTED
+            it.dueDateTime = LocalDateTime.now()
+        }
 
+        every { post.id } returns 1
         every { postRepository.save(any()) } returns post
 
         //when
@@ -47,5 +50,4 @@ internal class PostCommandTest {
 
         assertThat(postId).isEqualTo(post.id)
     }
-
 }
