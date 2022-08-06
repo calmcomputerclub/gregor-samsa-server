@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/v1/api")
+@RequestMapping(API_PREFIX)
 class PostCommandApiController(
     private val postCommandService: PostCommandService,
 ) {
