@@ -1,6 +1,7 @@
 package com.gregorsamsa.post.service
 
 import com.gregorsamsa.core.post.PostCommand
+import com.gregorsamsa.exception.NotFoundException
 import com.gregorsamsa.post.web.dto.response.PostViewResponse
 import org.springframework.stereotype.Service
 
@@ -14,5 +15,12 @@ class PostQueryService(
         return allPost.map {
             PostViewResponse.of(it)
         }
+    }
+
+    fun getPost(postId: Long): PostViewResponse {
+        val post = postCommand.getPostOrNull(postId)
+            ?: throw NotFoundException("post is null, postId:$postId")
+
+        return PostViewResponse.of(post)
     }
 }
