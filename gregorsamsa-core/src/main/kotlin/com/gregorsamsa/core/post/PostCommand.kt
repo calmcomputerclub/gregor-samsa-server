@@ -27,4 +27,10 @@ class PostCommand(
 
         return saved.id!!
     }
+
+    fun getAllPost(): List<PostVO> {
+        val posts = postRepository.findAll()
+
+        return posts.map { PostVO.of(it) }
+    }
 }
