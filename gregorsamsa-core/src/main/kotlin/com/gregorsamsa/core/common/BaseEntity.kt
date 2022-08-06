@@ -1,7 +1,7 @@
-package com.gregorsamsa.core
+package com.gregorsamsa.core.common
 
-import org.hibernate.annotations.CreationTimestamp
-import org.hibernate.annotations.UpdateTimestamp
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
 import java.time.LocalDateTime
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -9,15 +9,15 @@ import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
-internal class BaseEntity {
+abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null
 
-    @CreationTimestamp
+    @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()
 
-    @UpdateTimestamp
+    @LastModifiedDate
     var updatedAt: LocalDateTime = LocalDateTime.now()
 
     val deletedAt: LocalDateTime? = null
