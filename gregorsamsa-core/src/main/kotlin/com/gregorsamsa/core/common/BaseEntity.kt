@@ -20,5 +20,9 @@ abstract class BaseEntity {
     @LastModifiedDate
     var updatedAt: LocalDateTime = LocalDateTime.now()
 
-    val deletedAt: LocalDateTime? = null
+    var deletedAt: LocalDateTime? = null
+
+    fun deleted() {
+        this.deletedAt = LocalDateTime.now()
+    }
 }

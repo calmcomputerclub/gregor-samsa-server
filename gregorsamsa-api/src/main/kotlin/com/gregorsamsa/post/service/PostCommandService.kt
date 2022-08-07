@@ -11,7 +11,6 @@ import java.time.LocalDateTime
 @Service
 class PostCommandService(
     private val postCommand: PostCommand,
-    private val postQueryService: PostQueryService,
 ) {
 
     fun create(
@@ -44,5 +43,9 @@ class PostCommandService(
         ) ?: throw NotFoundException("post is null")
 
         return PostUpdateResponse.of(post)
+    }
+
+    fun delete(postId: Long) {
+        postCommand.deleteById(postId)
     }
 }

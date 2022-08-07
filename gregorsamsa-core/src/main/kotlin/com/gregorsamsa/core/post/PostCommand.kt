@@ -47,4 +47,11 @@ class PostCommand(
 
         return post?.let { PostVO.of(it) }
     }
+
+    fun deleteById(postId: Long) {
+        val post = postRepository.findByIdOrNull(postId)
+        post?.let {
+            it.deleted()
+        }
+    }
 }

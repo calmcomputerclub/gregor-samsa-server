@@ -46,4 +46,11 @@ class PostCommandApiController(
 
         return ResponseEntity.status(HttpStatus.OK).body(post)
     }
+
+    @DeleteMapping("/post/{postId}")
+    fun postDelete(@PathVariable postId: Long): ResponseEntity<Nothing> {
+        postCommandService.delete(postId)
+
+        return ResponseEntity.noContent().build()
+    }
 }

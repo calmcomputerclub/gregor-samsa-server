@@ -14,6 +14,7 @@ import com.gregorsamsa.post.web.dto.requst.PostUpdateRequest
 import com.gregorsamsa.post.web.dto.response.PostUpdateResponse
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
+import io.mockk.justRun
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.post
 import org.springframework.test.web.servlet.put
 import java.time.LocalDateTime
@@ -41,6 +43,22 @@ class PostCommandApiControllerTest {
     fun setUp() {
         objectMapper = ObjectMapper()
         objectMapper.registerModule(JavaTimeModule())
+    }
+
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    inner class `Post 삭제 테스트` {
+        @Test
+        fun `204 No Content`() {
+            //given
+            justRun { postCommandService.delete(any()) }
+            //when
+            val response = mockMvc.delete("$API_PREFIX/post/{postId}", 1)
+            //then
+            response.andExpect {
+                status { isNoContent() }
+            }.andDo { print() }
+        }
     }
 
     @Nested
