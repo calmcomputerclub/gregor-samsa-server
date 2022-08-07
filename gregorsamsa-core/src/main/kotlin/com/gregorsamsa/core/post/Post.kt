@@ -26,4 +26,16 @@ class Post(
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "authorId", insertable = false, updatable = false, nullable = true)
     var author: Author?,
-): BaseEntity()
+): BaseEntity() {
+    fun update(
+        title: String,
+        content: String?,
+        status: PostStatus,
+        dueDateTime: LocalDateTime?
+    ) {
+        this.title = title
+        this.content = content
+        this.status = status
+        this.dueDateTime = dueDateTime
+    }
+}
